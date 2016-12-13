@@ -1,58 +1,68 @@
-var gameOver = false
-var movesMade = []
+var moves = []
+var movesPlayerOne = []
+var movesPlayerTwo = []
+var player = 1
 
 function playTurn (index) {
-  if (movesMade.includes(index) === true) {
+  if (moves.includes(index)) {
     return false
-  } else {
-    movesMade.push(index)
+  } else if (isGameOver() === true) {
+    return false
+  } else if (player === 1) {
+    movesPlayerOne.push(index)
+    moves.push(index)
+    player = 2
+    return true
+  } else if (player === 2) {
+    movesPlayerTwo.push(index)
+    moves.push(index)
+    player = 1
     return true
   }
 }
 
 function isGameOver () {
-  return false
-  if (winner === 1 || winner === 2 || winner === 3) {
+  if (whoWon()) {
     return true
-  }
-}
-
-function whoWon() {
-  return 0
-  if (movesMade[0] === movesMade[1] && movesMade[2]) {
-    winner = movesMade[0]
-  } else if (movesMade[3] === movesMade[4] && movesMade[5]) {
-    winner = movesMade[3]
-  } else if (movesMade[6] === movesMade[7] && movesMade[8]) {
-    winner = movesMade[6]
-  } else if (movesMade[0] === movesMade[3] && movesMade [6]) {
-    winner = movesMade[0]
-  } else if (movesMade[1] === movesMade[4] && movesMade[7]) {
-    winner = movesMade[1]
-  } else if (movesMade[2] === movesMade[5] && movesMade[8]) {
-    winner = movesMade[2]
-  } else if (movesMade[2] === movesMade[4] && movesMade[6]) {
-    winner = movesMade[2]
-  } else if (movesMade[0] === movesMade[4] && movesMade[8]) {
-    winner = movesMade[0]
   } else {
-    winner = 3
+    return false
   }
 }
 
 /*
+array.includes(searchElement, fromIndex)
+This method does not search for > 1 element
+*/
+
 function whoWon () {
-  if (gameOver === false) {
-    return 0
-  } else if (gameOver === true && moves.length % 2 === 1) {
+  if (movesPlayerOne.includes(0) && movesPlayerOne.includes(1) && movesPlayerOne.includes(2) ||
+      movesPlayerOne.includes(3) && movesPlayerOne.includes(4) && movesPlayerOne.includes(5) ||
+      movesPlayerOne.includes(6) && movesPlayerOne.includes(7) && movesPlayerOne.includes(8) ||
+      movesPlayerOne.includes(0) && movesPlayerOne.includes(3) && movesPlayerOne.includes(6) ||
+      movesPlayerOne.includes(1) && movesPlayerOne.includes(4) && movesPlayerOne.includes(7) ||
+      movesPlayerOne.includes(2) && movesPlayerOne.includes(5) && movesPlayerOne.includes(8) ||
+      movesPlayerOne.includes(2) && movesPlayerOne.includes(4) && movesPlayerOne.includes(6) ||
+      movesPlayerOne.includes(0) && movesPlayerOne.includes(4) && movesPlayerOne.includes(8)) {
     return 1
-  } else if (gameOver === true && moves.length % 2 === 0) {
+  } else if (movesPlayerTwo.includes(0) && movesPlayerTwo.includes(1) && movesPlayerTwo.includes(2) ||
+             movesPlayerTwo.includes(3) && movesPlayerTwo.includes(4) && movesPlayerTwo.includes(5) ||
+             movesPlayerTwo.includes(6) && movesPlayerTwo.includes(7) && movesPlayerTwo.includes(8) ||
+             movesPlayerTwo.includes(0) && movesPlayerTwo.includes(3) && movesPlayerTwo.includes(6) ||
+             movesPlayerTwo.includes(1) && movesPlayerTwo.includes(4) && movesPlayerTwo.includes(7) ||
+             movesPlayerTwo.includes(2) && movesPlayerTwo.includes(5) && movesPlayerTwo.includes(8) ||
+             movesPlayerTwo.includes(2) && movesPlayerTwo.includes(4) && movesPlayerTwo.includes(6) ||
+             movesPlayerTwo.includes(0) && movesPlayerTwo.includes(4) && movesPlayerTwo.includes(8)) {
     return 2
-  } else if (gameOver === true && moves.length === 9) {
+  } else if (moves.length === 9) {
     return 3
+  } else {
+    return 0
   }
 }
-*/
+
 function restart () {
-  movesMade = []
+  moves = []
+  movesPlayerOne = []
+  movesPlayerTwo = []
+  player = 1
 }

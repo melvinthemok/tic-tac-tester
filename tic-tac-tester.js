@@ -34,6 +34,7 @@ var testsFailed = 0
 console.log('==================================')
 console.log('RUNNING TIC TAC TESTER')
 console.log('==================================')
+
 simulateGame('P1 Top Row Victory', [0, 3, 1, 4, 2], playerOne)
 simulateGame('P2 Top Row Victory', [8, 0, 3, 1, 4, 2], playerTwo)
 simulateGame('P1 Middle Row Victory', [3, 0, 4, 1, 5], playerOne)
